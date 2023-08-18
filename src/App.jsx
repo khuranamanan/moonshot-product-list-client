@@ -8,12 +8,17 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tokenResponse = await axios.post("/api/get-token");
+        const tokenResponse = await axios.post(
+          "https://moonshot-product-list-backend.vercel.app/get-token"
+        );
         const fetchedToken = tokenResponse.data.token;
 
-        const productsResponse = await axios.post("/api/get-products", {
-          token: fetchedToken,
-        });
+        const productsResponse = await axios.post(
+          "https://moonshot-product-list-backend.vercel.app/get-products",
+          {
+            token: fetchedToken,
+          }
+        );
         const fetchedProducts = productsResponse.data.products.data.electricity;
 
         setProducts(fetchedProducts);
